@@ -1,0 +1,2 @@
+include ':app', ':appCommon', ':androidCommon', ':moduleFunc1', ':moduleFunc2'
+rootProject.name='RxRetrofitMvp'
