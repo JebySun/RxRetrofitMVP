@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity implements MainIView {
 
         tvInfo = findViewById(R.id.tv_info);
 
-//        presenter.getPage();
+        presenter.getPage();
 //        presenter.getGiftList();
 
         gotoRoomModule();

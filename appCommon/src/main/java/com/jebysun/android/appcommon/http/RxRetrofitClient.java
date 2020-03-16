@@ -57,7 +57,7 @@ public class RxRetrofitClient {
         builder.readTimeout(DEFAULT_READ_TIME_OUT,TimeUnit.SECONDS); // 读操作超时时间
         builder.retryOnConnectionFailure(true); // 错误重连
         // 添加公共参数拦截器
-        builder.addInterceptor(buildCommonParamsInterceptor());
+//        builder.addInterceptor(buildCommonParamsInterceptor());
         // 添加网络日志拦截器
         builder.addInterceptor(buildLogInterceptor());
         builder.addInterceptor(new ChuckInterceptor(MyApp.getAppContext()));
