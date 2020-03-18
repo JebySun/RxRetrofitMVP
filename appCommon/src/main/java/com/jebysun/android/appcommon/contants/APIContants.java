@@ -1,4 +1,4 @@
-package com.jebysun.android.framework.common;
+package com.jebysun.android.appcommon.contants;
 
 public interface APIContants {
 

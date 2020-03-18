@@ -1,4 +1,4 @@
-package com.jebysun.android.framework;
+package com.jebysun.android.moduleroom.demo;
 
 import com.jebysun.android.appcommon.base.BaseModel;
 import com.jebysun.android.appcommon.http.RequestCallback;
@@ -14,12 +14,12 @@ import io.reactivex.functions.Consumer;
 import okhttp3.ResponseBody;
 
 
-public class MainModel extends BaseModel {
+public class DemoModel extends BaseModel {
 
-    private MainHttpService mXXXHttpService;
+    private DemoHttpService mDemoHttpService;
 
-    public MainModel() {
-        mXXXHttpService = RxRetrofitClient.getInstance().createHTTPService(MainHttpService.class);
+    public DemoModel() {
+        mDemoHttpService = RxRetrofitClient.getInstance().createHTTPService(DemoHttpService.class);
     }
 
     /**
@@ -27,7 +27,7 @@ public class MainModel extends BaseModel {
      * @param callback
      */
     public void giftList(RequestCallback<String> callback) {
-        Observable<Result<String>> observable = mXXXHttpService.giftList(null);
+        Observable<Result<String>> observable = mDemoHttpService.giftList(null);
         super.doSubscribe(observable, callback);
     }
 
@@ -36,7 +36,7 @@ public class MainModel extends BaseModel {
      * @param callback
      */
     public void getPage(final RequestCallback<String> callback) {
-        Disposable disposable = mXXXHttpService.getHTMLPage()
+        Disposable disposable = mDemoHttpService.getHTMLPage()
                 .compose(RxHelper.<ResponseBody>switchThread())
                 .subscribe(new Consumer<ResponseBody>() {
                     @Override

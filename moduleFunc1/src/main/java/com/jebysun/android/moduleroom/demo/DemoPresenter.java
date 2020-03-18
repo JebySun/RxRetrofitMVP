@@ -1,4 +1,4 @@
-package com.jebysun.android.framework;
+package com.jebysun.android.moduleroom.demo;
 
 import com.jebysun.android.appcommon.base.BasePresenter;
 import com.jebysun.android.appcommon.http.RequestCallback;
@@ -7,14 +7,14 @@ import com.jebysun.android.appcommon.http.RequestCallback;
  * 视图和数据之间的主持
  * Presenter不依赖RxJava和Retrofit
  */
-public class MainPresenter extends BasePresenter {
+public class DemoPresenter extends BasePresenter {
 
-    private MainIView view;
-    private MainModel model;
+    private DemoIView view;
+    private DemoModel model;
 
-    public MainPresenter(MainIView view) {
+    public DemoPresenter(DemoIView view) {
         this.view = view;
-        this.model = new MainModel();
+        this.model = new DemoModel();
     }
 
     public void getPage() {
@@ -31,8 +31,6 @@ public class MainPresenter extends BasePresenter {
             }
         });
     }
-
-
 
     public void getGiftList() {
         model.giftList(new RequestCallback<String>() {

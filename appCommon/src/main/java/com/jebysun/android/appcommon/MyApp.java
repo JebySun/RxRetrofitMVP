@@ -2,6 +2,7 @@ package com.jebysun.android.appcommon;
 
 import android.app.Application;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.jebysun.android.androidcommon.util.AppContextUtil;
 
 
@@ -14,6 +15,8 @@ public class MyApp extends Application {
         super.onCreate();
         app = this;
         AppContextUtil.init(this);
+
+        initARouter();
     }
 
     public static MyApp getAppContext() {
@@ -21,7 +24,14 @@ public class MyApp extends Application {
     }
 
     public String getStr() {
-        return "!!!!!!!MyApp!!!!!!!!";
+        return "==================MyApp模块!!!";
     }
 
+    public void initARouter() {
+        if (BuildConfig.DEBUG) {      // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            ARouter.openLog();        // 打印日志
+            ARouter.openDebug();      // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this); // 尽可能早，推荐在Application中初始化
+    }
 }

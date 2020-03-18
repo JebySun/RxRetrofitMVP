@@ -1,6 +1,6 @@
-package com.jebysun.android.framework;
+package com.jebysun.android.moduleroom.demo;
 
-import com.jebysun.android.framework.common.APIContants;
+import com.jebysun.android.appcommon.contants.APIContants;
 import com.jebysun.android.appcommon.http.Result;
 
 import io.reactivex.Observable;
@@ -10,7 +10,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface MainHttpService {
+public interface DemoHttpService {
 
     /**
      * 返回OKhttp原始ResponseBody

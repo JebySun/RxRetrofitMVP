@@ -1,51 +1,67 @@
 package com.jebysun.android.framework;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.os.CountDownTimer;
 
-import com.jebysun.android.moduleroom.RoomActivity;
-import com.jebysun.android.moduleuser.UserActivity;
-import com.jebysun.android.appcommon.base.BaseActivity;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.jebysun.android.appcommon.base.BasePresenter;
+import com.jebysun.android.appcommon.contants.RouteContants;
+import com.jebysun.android.appcommon.base.BaseActivity;
 
-public class MainActivity extends BaseActivity implements MainIView {
+public class MainActivity extends BaseActivity {
+    // 开屏页最少显示多少秒
+    private static final int SPLASH_TIME_IN_SECOND = 2;
 
-    private TextView tvInfo;
-
-    private MainPresenter presenter;
+    private CountDownTimer mCountDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        tvInfo = findViewById(R.id.tv_info);
+        startCountdown();
+    }
 
-        presenter.getPage();
-//        presenter.getGiftList();
 
-        gotoRoomModule();
+    private void startCountdown() {
+        mCountDownTimer = new CountDownTimer(1000 * SPLASH_TIME_IN_SECOND, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
 
+            }
+
+            @Override
+            public void onFinish() {
+                startNextActivity();
+            }
+        };
+        mCountDownTimer.start();
+    }
+
+    private void startNextActivity() {
+        gotoModule();
+    }
+
+
+    @Override
+    public void onDestroy() {
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+            mCountDownTimer = null;
+        }
+        super.onDestroy();
     }
 
     @Override
     public BasePresenter initPresenter() {
-        presenter = new MainPresenter(this);
-        return presenter;
-    }
-
-    @Override
-    public void onSuccess(String msg) {
-        tvInfo.setText(msg);
+        return null;
     }
 
 
-    private void gotoUserModule() {
-        startActivity(new Intent(this, UserActivity.class));
+    private void gotoModule() {
+        ARouter.getInstance().build(RouteContants.ROOM_DEMO).navigation();
+        finish();
     }
 
-    private void gotoRoomModule() {
-        startActivity(new Intent(this, RoomActivity.class));
-    }
 }
